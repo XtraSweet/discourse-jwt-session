@@ -20,8 +20,8 @@ after_initialize do
       algorithm = "HS256"
 
       jwt_payload = {
-        sub: user.id,
-        name: user.email
+        sub: "#{user.id}@comfortfoodie.club",
+        exp: SiteSetting.maximum_session_age.hours.from_now.to_i
       }
       jwt = JWT.encode(jwt_payload, secret_key, algorithm)
 
@@ -35,7 +35,7 @@ after_initialize do
 
       cookie_jar[cookie_name] = {
         value: jwt,
-        httponly: true,
+        httponly: false,
         secure: SiteSetting.force_https,
         expires: expires,
         same_site: same_site,
