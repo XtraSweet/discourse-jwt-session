@@ -5,3 +5,7 @@ plugins:
   jwt_session_cookie_name:
     default: discourse_jwt
     client: false
+  jwt_session_signing_secret:
+    default: ""
+    client: false
+    secret: true
