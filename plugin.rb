@@ -16,7 +16,7 @@ after_initialize do
       super
 
       cookie_name = SiteSetting.jwt_session_cookie_name
-      secret_key = GlobalSetting.safe_secret_key_base
+      secret_key = SiteSetting.jwt_session_signing_secret
       algorithm = "HS256"
 
       jwt_payload = {
