@@ -21,6 +21,7 @@ after_initialize do
 
       jwt_payload = {
         sub: "u#{user.id}@#{Discourse.current_hostname}",
+        tl: user.trust_level,
         exp: SiteSetting.maximum_session_age.hours.from_now.to_i
       }
       jwt = JWT.encode(jwt_payload, secret_key, algorithm)
