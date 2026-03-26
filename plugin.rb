@@ -20,7 +20,7 @@ after_initialize do
       algorithm = "HS256"
 
       jwt_payload = {
-        sub: "#{user.id}@comfortfoodie.club",
+        sub: "u#{user.id}@#{Discourse.current_hostname}",
         exp: SiteSetting.maximum_session_age.hours.from_now.to_i
       }
       jwt = JWT.encode(jwt_payload, secret_key, algorithm)
